@@ -1,0 +1,52 @@
+.mapa-vendas .leilao{
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.mapa-vendas .table-mapa-vendas{
+  margin-top: 2rem;
+}
+
+.mapa-vendas .flex-heading{
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mapa-vendas .table-mapa-vendas th, .mapa-vendas .table-mapa-vendas td,
+.mapa-vendas .table-total-mapa-vendas th, .mapa-vendas .table-total-mapa-vendas td{
+  border: var(--border);
+  border-collapse: collapse;
+  font-size: 1.4rem;
+  text-align: center;
+  text-transform: uppercase;
+  height: max-content;
+  padding: 0.2rem 0.4rem;
+}
+
+
+.table-total-mapa-vendas td .flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+h3.pag {
+  font-size: 1.4rem;
+  display: none;
+  position: absolute;
+  page-break-before: always;
+  page-break-after: always;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+h3::before{
+  position: relative;
+  bottom: -1px;
+}

@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+:root{
+  --blue: #314E9A;
+  --blue-gray: #8793C5;
+  --blue-light: #99A5CD;
+  --blue-ciano: #4299E1;
+  --red: #EE3237;
+  --black: #000000;
+  --white: #FFFFFF;
+  --white-easy: #EDF2F7;
+  --gray: #E5E5E5;
+  --gray-dark: #989898;
+  --gray-text: rgba(74,85,104, 1);
+  --gray-alternate: #505050;
+  --border: 0.1rem solid var(--black);
+  --black-easy: #1A202C;
+  --violet: #5A67D8;
+  --border-violet: 0.5rem solid var(--violet);
+}
+
+*{
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none; outline: none;
+  transition: 0.2s linear;
+}
+
+svg{
+  transition: 0s all linear !important;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body{
+  background: var(--white-easy);
+}
+
+body.true{
+  padding-left: 26rem;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even){
+  background: var(--gray);
+}
+
+tr:nth-child(odd){
+  background: var(--white);
+}
+
+.btn{
+  display: block;
+  width: max-content;
+  background: var(--blue-ciano);
+  padding: 1rem 2rem;
+  color: var(--white);
+  font-size: 1.8rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.btn:hover{
+  background: var(--red);
+}
+
+.logo{
+  height: 8rem;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title{
+  font-size: 2.5rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.even{
+  background: var(--gray) !important;
+  color: var(--black) !important;
+}
+
+.odd{
+  background: var(--white) !important;
+  color: var(--black) !important;
+}
+
+.subtitle{
+  font-size: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+@media screen and (max-width: 760px){
+  html{
+    font-size: 50%;
+  }
+}
+
+@media print {
+  *{
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html{
+    font-size: 55% !important;
+  }
+  
+  body{
+    padding-left: 0 !important;
+    background: var(--white) !important;
+  }
+
+  .header{
+    display: none !important;
+  }
+
+  .container{
+    page-break-after: always !important;
+    page-break-before: always !important;
+  }
+  
+}

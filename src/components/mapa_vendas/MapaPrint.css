@@ -1,0 +1,14 @@
+@media print {
+  @page {
+    size: A4 landscape;
+    margin-top: 5.5%;
+  }
+
+  .mapa-vendas .table-mapa-vendas tr{
+    break-inside: avoid;
+  }
+
+  h3.pag {
+    display: initial !important;
+  }
+}

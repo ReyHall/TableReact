@@ -1,0 +1,96 @@
+.negociacoes .flex-heading{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  gap: 1rem;
+  text-transform: uppercase;
+}
+
+.negociacoes .dados{
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.negociacoes .dados p{
+  font-size: 1.6rem;
+  color: var(--black);
+  line-height: 1.4;
+}
+
+.negociacoes .obs{
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 1.4;
+}
+
+.negociacoes .table-compras-vendas,
+.negociacoes .table-receber-pagar{
+  margin: 2rem 0;
+}
+
+.negociacoes .table-receber-pagar{
+  -webkit-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.negociacoes .table-compras-vendas th, .negociacoes .table-compras-vendas td,
+.negociacoes .table-receber-pagar th, .negociacoes .table-receber-pagar td{
+  border: var(--border);
+  border-collapse: collapse;
+  padding: 0.8rem 0.4rem;
+  font-size: 1.6rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.negociacoes .table-receber-pagar td{
+  width: 50%;
+}
+
+.negociacoes .table-receber-pagar tr:nth-child(even){
+  background: var(--white);
+}
+
+.negociacoes .table-receber-pagar tr:nth-child(odd){
+  background: var(--white);
+}
+
+.negociacoes .receipt{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1.5rem 10rem 1.5rem 2rem;
+}
+
+.negociacoes .receipt .emphasis{
+  font-size: 1.5rem;
+  text-transform: none !important;
+  color: var(--black);
+  max-width: 36rem;
+}
+
+.negociacoes .receipt .signature{
+  width: 30%;
+  font-size: 1.6rem;
+  text-align: center;
+  position: relative;
+  top: 5px;
+  text-transform: none !important;
+}
+
+.negociacoes .receipt .signature::before{
+  content: "";
+  display: block;
+  height: 0.1rem;
+  width: 100%;
+  background: var(--black);
+  margin-bottom: 1rem;
+}
+
+@media(max-width: 790px){
+  .negociacoes .receipt{
+    padding: 1rem 4rem 1rem 2rem;
+  }
+}
