@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../assets/Logo-Atual-leiloes-163px.png";
 import negociacoes from "./negociacoes.json";
 import TableComprasVendas from "./TableComprasVendas";
+import {calculateTotals} from "./MethodNegociacoes"
 import "./Negociacoes.css";
 import TableReceberPagar from "./TableReceberPagar";
 
@@ -25,7 +26,7 @@ function Negociacoes(){
             <p>Estado/Uf: {estado}</p>
           </div>
 
-          <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao[0].data} no LEILÃO no {loteLeilao[0].local}</p>
+          <p className="obs">Prezado(a) senhor(a):<br/> Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao[0].data} no LEILÃO no {loteLeilao[0].local}</p>
 
           <TableComprasVendas loteComprado={loteComprado} listaVendas={listaVendas} loteCondicao={loteCondicao} />
           <TableReceberPagar listaVendas={listaVendas} loteComprado={loteComprado} loteCondicao={loteCondicao} />

@@ -2,14 +2,7 @@ export const calcValueFormat = (valorLance, variations, condicao) => {
     const valueCalc = (valorLance * variations) * parseFloat(condicao.replace(/x\((.*?)\)/g, ""));
     return valueCalc;
 };
-
-export const calcularEFormatarValor = (valorLance, variationsLength, condicao, comissao) => {
-    const valorCalculado = calcValueFormat(valorLance, variationsLength, condicao);
-    const comissaoCalculada = Number(comissao) / 100;
-    const resultado = valorCalculado * comissaoCalculada;
-    return resultado.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
-};
-
+  
 export const calcValueParcelas = (valorLance, parcelas) => {
     const valueTotalParcela = valorLance * parseFloat(parcelas[0].parcela);
     return valueTotalParcela;
