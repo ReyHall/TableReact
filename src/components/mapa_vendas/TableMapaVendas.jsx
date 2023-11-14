@@ -3,13 +3,13 @@ import { abreviar, calcParcelas, calcTotals, totalGeralVendas } from "./MethodVe
 
 function TableMapaVendas({ mapaVendas }) {
   var bottom = 0;
-  var pagNum = 2; 
+  var pagNum = 2;
   const linkStyle = document.createElement("link");
 
   const colspanNum = document.querySelectorAll(".table-mapa-vendas tbody td").length;
 
   React.useEffect(() => {
-    document.querySelectorAll("tbody tr:nth-child(17n)").forEach(function(paragraph) {
+    document.querySelectorAll("tbody tr:nth-child(17n)").forEach(function (paragraph) {
       bottom -= 100;
       var botString = bottom.toString();
       var counter = document.querySelector('h3.pag1').cloneNode(true);
@@ -24,7 +24,7 @@ function TableMapaVendas({ mapaVendas }) {
 
     var pagTotal = document.querySelectorAll('.pag').length; /* Gets the total amount of pages by total classes of paragraphs */
     var pagTotalString = pagTotal.toString();
-    document.querySelectorAll("h3[class^=pag]").forEach(function(element) {
+    document.querySelectorAll("h3[class^=pag]").forEach(function (element) {
       /* Gets the numbers of each classes and pages */
       var numId = element.className.match(/\d+/)[0];
       document.styleSheets[0].addRule('h3.pag' + numId + '::before', 'content: " ' + numId + ' de ' + pagTotalString + '";');
@@ -61,9 +61,13 @@ function TableMapaVendas({ mapaVendas }) {
           {mapaVendas.map(({ numLote, comprador, vendedor, animais, qntAnimalSexoF, qntAnimalSexoM, qntAnimalSexoT, animalRaca, valorLance, condicaoMultiplica, comissaoVend, comissaoComprador, valorTotal }, index) => (
             <tr key={index} className={index % 2 == 0 ? "even" : "odd"}>
               <td>{numLote}</td>
-              <td>{vendedor[0].porcentagem + "%"}</td>
+              {vendedor && vendedor[0] && (
+                <td>{vendedor[0].porcentagem + "%"}</td>
+              )}
               <td style={{ width: "15%" }}>{abreviar(vendedor[0].nome)}</td>
-              <td>{comprador[0].porcentagem + "%"}</td>
+              {comprador && comprador[0] && (
+                <td>{comprador[0].porcentagem + "%"}</td>
+              )}
               <td style={{ width: "15%" }}>{abreviar(comprador[0].nome)}</td>
               <td style={{ width: "15%" }}>
                 <p> F: {qntAnimalSexoF} M: {qntAnimalSexoM} T: {qntAnimalSexoT}</p>
