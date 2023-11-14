@@ -60,6 +60,7 @@ function TableReceberPagar({ listaVendas, loteComprado, loteCondicao }){
             </div>
           </td>
         </tr>
+
       </tfoot>
     </table>
   )

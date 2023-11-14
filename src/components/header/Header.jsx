@@ -3,10 +3,27 @@ import {AiOutlineBell, AiFillHome, AiOutlineBars} from "react-icons/ai";
 import {BiSolidRightArrow} from "react-icons/bi";
 import "./Header.css";
 import { NavLink } from "react-router-dom";
+import { useQuery } from '../../lib/graphql'
+
+const GET_ME = `
+    query {
+      panelGetMe{
+        id
+        name
+        email
+        role
+      }
+    }
+  `
+
+
+
 
 function Header(){
   const [isSidebar, setIsSidebar] = React.useState(true);
   const body = document.body; 
+  const { data } = useQuery(GET_ME)
+
 
   React.useEffect(() =>{
     function resize(){
@@ -34,7 +51,7 @@ function Header(){
 
       <nav className={"sidebar " + isSidebar}>
         <h3>AtualSistema</h3>
-        <NavLink to={"/dashbord"}><AiFillHome className="icons-sidebar" />Home</NavLink>
+        <NavLink to={"/dashboard"}><AiFillHome className="icons-sidebar" />Home</NavLink>
         <NavLink to={"/leiloes"}><BiSolidRightArrow className="icons-sidebar" />Leilões</NavLink>
         <NavLink to={"/condicoes"}><BiSolidRightArrow className="icons-sidebar"/>Condições</NavLink>
         <NavLink to={"/comissoes"}><BiSolidRightArrow className="icons-sidebar"/>Comissões</NavLink>
