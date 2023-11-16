@@ -10,25 +10,63 @@ let vendedoresLista = [];
 let compradoresLista = [];
 let compradoresVendedoresLista = [];
 
+
+
 compradores.forEach((compra) => compradoresLista.push(compra));
 vendedores.forEach((vende) => vendedoresLista.push(vende));
 
 console.log(compradores.length)
 
+
+
+
+
+
 compradoresVendedoresLista = [...vendedoresLista, ...compradoresLista];
+
+
 
 // Filtra a lista combinada para manter apenas elementos únicos pelo ID
 compradoresVendedoresLista = compradoresVendedoresLista.filter((elemento, index, self) =>
-    index === self.findIndex((item) => item.id === elemento.id)
+  index === self.findIndex((item) => item.id === elemento.id)
 );
 
-console.log(compradoresVendedoresLista);
+console.log(compradoresVendedoresLista.length);
 
 
-function Negociacoes(){
+for (let index = 0; index < compradores.length; index++) {
+  let comprador = compradores[index];
+  for (let index1 = 0; index1 < compradoresVendedoresLista.length; index1++) {
+    let compradoresVendedoresLista1 = compradoresVendedoresLista[index1];
+    if (comprador.id == compradoresVendedoresLista1.id) {
+      // somente no lote do comprador e vendedor sera criado esse array
+      // observar para colocar uma condicional para os demais, se não vai quebrar o codigo.
+      compradoresVendedoresLista1.compras = []
+      compradoresVendedoresLista1.compras.listaVendas = []
+      compradoresVendedoresLista1.compras.loteComprado = []
+      compradoresVendedoresLista1.compras.loteCondicao = []
+      compradoresVendedoresLista1.compras.listaVendas = comprador.listaVendas
+      compradoresVendedoresLista1.compras.loteComprado = comprador.loteComprado
+      compradoresVendedoresLista1.compras.loteCondicao = comprador.loteCondicao
+    }
+    else {
+    }
+
+  }
+}
+
+
+
+console.log(compradoresVendedoresLista.length);
+
+
+
+
+
+function Negociacoes() {
   return (
     <main className="negociacoes">
-      {vendedores.map(({loteId, loteLeilao, loteCondicao, nome, rua, numero, estado, bairro}, index) =>(
+      {vendedores.map(({ loteId, loteLeilao, loteCondicao, nome, rua, numero, estado, bairro }, index) => (
         <section key={index} className="container">
           <img className="logo" src={logo} alt="" />
           <h1 className="title">Relações de Negociações</h1>
