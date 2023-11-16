@@ -1,23 +1,43 @@
 import React from "react";
 import logo from "../../assets/Logo-Atual-leiloes-163px.png";
-import negociacoes from "./negociacoes.json";
+import compradores from "./compradores.json"
+import vendedores from "./vendedores.json";
 import TableComprasVendas from "./TableComprasVendas";
-import "./Negociacoes.css";
 import TableReceberPagar from "./TableReceberPagar";
+import "./Negociacoes.css";
+
+let vendedoresLista = [];
+let compradoresLista = [];
+let compradoresVendedoresLista = [];
+
+compradores.forEach((compra) => compradoresLista.push(compra));
+vendedores.forEach((vende) => vendedoresLista.push(vende));
+
+console.log(compradores.length)
+
+compradoresVendedoresLista = [...vendedoresLista, ...compradoresLista];
+
+// Filtra a lista combinada para manter apenas elementos únicos pelo ID
+compradoresVendedoresLista = compradoresVendedoresLista.filter((elemento, index, self) =>
+    index === self.findIndex((item) => item.id === elemento.id)
+);
+
+console.log(compradoresVendedoresLista);
+
 
 function Negociacoes(){
   return (
     <main className="negociacoes">
-      {negociacoes.map(({loteLeilao, loteComprado, listaVendas, loteCondicao, nome, rua, numero, bairro, estado}, index) =>(
+      {vendedores.map(({loteId, loteLeilao, loteCondicao, nome, rua, numero, estado, bairro}, index) =>(
         <section key={index} className="container">
-          <img className="logo" src={logo} alt="logo" />
+          <img className="logo" src={logo} alt="" />
           <h1 className="title">Relações de Negociações</h1>
 
           <div className="flex-heading">
-            <p className="leilao">Leilão: {loteLeilao[0].nome}</p>
-            <p className="data">Data: {loteLeilao[0].data}</p>
+            <p className="leilao">Leilão: {loteLeilao.nome}</p>
+            <p className="data">Data: {loteLeilao.data}</p>
           </div>
-          
+
           <div className="dados">
             <p>Nome: {nome}</p>
             <p>Endereço: {rua + numero}</p>
@@ -25,10 +45,11 @@ function Negociacoes(){
             <p>Estado/Uf: {estado}</p>
           </div>
 
-          <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao[0].data} no LEILÃO no {loteLeilao[0].local}</p>
+          <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao.data} no LEILÃO no {loteLeilao.local}</p>
 
-          <TableComprasVendas loteComprado={loteComprado} listaVendas={listaVendas} loteCondicao={loteCondicao} />
-          <TableReceberPagar listaVendas={listaVendas} loteComprado={loteComprado} loteCondicao={loteCondicao} />
+          <TableComprasVendas loteId={loteId} loteCondicao={loteCondicao} />
+          <TableReceberPagar />
+
         </section>
       ))}
     </main>
