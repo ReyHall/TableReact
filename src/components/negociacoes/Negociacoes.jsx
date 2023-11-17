@@ -24,7 +24,6 @@ compradoresVendedoresLista = compradoresVendedoresLista.filter(
 // Atualizando as compras usando forEach
 compradores.forEach(comprador => {
   let compradoresVendedoresLista1 = compradoresVendedoresLista.find(item => item.id === comprador.id);
-
   if (compradoresVendedoresLista1) {
     compradoresVendedoresLista1.compras = {
       listaVendas: [...comprador.listaVendas],
@@ -34,7 +33,7 @@ compradores.forEach(comprador => {
   }
 });
 
-console.log(compradoresVendedoresLista);
+console.log(compradoresVendedoresLista)
 
 function Negociacoes(){
   return (
@@ -66,7 +65,15 @@ function Negociacoes(){
             <p>Estado/Uf: {estado}</p>
           </div>
 
-          <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao.data} no LEILÃO no {loteLeilao.local}</p>
+          {Array.isArray(loteLeilao) ? (
+            <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao[0].data} no LEILÃO no {loteLeilao[0].local}</p>
+          ) : (
+            typeof loteLeilao === "object" && loteLeilao !== null ? (
+              <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao.data} no LEILÃO no {loteLeilao.local}</p>
+            ) : null
+          )}
+
+          
 
           <TableComprasVendas loteId={loteId} loteCondicao={loteCondicao} compras={compras} />
           <TableReceberPagar />
