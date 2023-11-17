@@ -8,35 +8,56 @@ import "./Negociacoes.css";
 
 let vendedoresLista = [];
 let compradoresLista = [];
-let compradoresVendedoresLista = [];
 
-compradores.forEach((compra) => compradoresLista.push(compra));
-vendedores.forEach((vende) => vendedoresLista.push(vende));
+// Usando forEach para copiar elementos dos arrays
+compradores.forEach(compra => compradoresLista.push({ ...compra }));
+vendedores.forEach(vende => vendedoresLista.push({ ...vende }));
 
-console.log(compradores.length)
+// Combinando os arrays de compradores e vendedores
+let compradoresVendedoresLista = [...vendedoresLista, ...compradoresLista];
 
-compradoresVendedoresLista = [...vendedoresLista, ...compradoresLista];
-
-// Filtra a lista combinada para manter apenas elementos únicos pelo ID
-compradoresVendedoresLista = compradoresVendedoresLista.filter((elemento, index, self) =>
-    index === self.findIndex((item) => item.id === elemento.id)
+// Removendo duplicatas pelo ID
+compradoresVendedoresLista = compradoresVendedoresLista.filter(
+  (elemento, index, self) => index === self.findIndex(item => item.id === elemento.id)
 );
 
-console.log(compradoresVendedoresLista);
+// Atualizando as compras usando forEach
+compradores.forEach(comprador => {
+  let compradoresVendedoresLista1 = compradoresVendedoresLista.find(item => item.id === comprador.id);
 
+  if (compradoresVendedoresLista1) {
+    compradoresVendedoresLista1.compras = {
+      listaVendas: [...comprador.listaVendas],
+      loteComprado: [...comprador.loteComprado],
+      loteCondicao: [...comprador.loteCondicao],
+    };
+  }
+});
+
+console.log(compradoresVendedoresLista);
 
 function Negociacoes(){
   return (
     <main className="negociacoes">
-      {vendedores.map(({loteId, loteLeilao, loteCondicao, nome, rua, numero, estado, bairro}, index) =>(
+      {compradoresVendedoresLista.map(({loteId, loteLeilao, loteCondicao, compras, nome, rua, numero, estado, bairro}, index) =>(
         <section key={index} className="container">
           <img className="logo" src={logo} alt="" />
           <h1 className="title">Relações de Negociações</h1>
 
+          {Array.isArray(loteLeilao) ? (
           <div className="flex-heading">
-            <p className="leilao">Leilão: {loteLeilao.nome}</p>
-            <p className="data">Data: {loteLeilao.data}</p>
+            <p className="leilao">Leilão: {loteLeilao[0].nome}</p>
+            <p className="data">Data: {loteLeilao[0].data}</p>
           </div>
+          ) : (
+            typeof loteLeilao === "object" && loteLeilao !== null ? (
+            // Se loteLeilao for um objeto
+            <div className="flex-heading">
+              <p className="leilao">Leilão: {loteLeilao.nome}</p>
+              <p className="data">Data: {loteLeilao.data}</p>
+            </div>
+            ) : null
+          )}
 
           <div className="dados">
             <p>Nome: {nome}</p>
@@ -47,7 +68,7 @@ function Negociacoes(){
 
           <p className="obs">Prezado(a) senhor(a): Apresentamos a seguir, demonstrativo financeiro de seus negócios realizados em {loteLeilao.data} no LEILÃO no {loteLeilao.local}</p>
 
-          <TableComprasVendas loteId={loteId} loteCondicao={loteCondicao} />
+          <TableComprasVendas loteId={loteId} loteCondicao={loteCondicao} compras={compras} />
           <TableReceberPagar />
 
         </section>
