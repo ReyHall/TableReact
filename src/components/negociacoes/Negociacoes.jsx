@@ -33,8 +33,6 @@ compradores.forEach(comprador => {
   }
 });
 
-console.log(compradoresVendedoresLista)
-
 function Negociacoes(){
   return (
     <main className="negociacoes">
@@ -73,10 +71,8 @@ function Negociacoes(){
             ) : null
           )}
 
-          
-
           <TableComprasVendas loteId={loteId} loteCondicao={loteCondicao} compras={compras} />
-          <TableReceberPagar />
+          <TableReceberPagar loteId={loteId} loteCondicao={loteCondicao} compras={compras} />
 
         </section>
       ))}

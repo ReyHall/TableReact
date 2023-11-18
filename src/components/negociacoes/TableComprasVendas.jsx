@@ -1,5 +1,4 @@
 import React from "react";
-import compradores from "./compradores.json";
 import {calcValueFormat, calcValueParcelas, calcularEFormatarValor, calcTotalVendas, calcTotalCompras} from "./MethodNegociacoes"
 
 function TableComprasVendas({loteId, compras, loteCondicao}){
@@ -42,7 +41,7 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
         <>
           {loteOrderId?.map((lote, index) => (
               <tr key={index}>
-                <td>{lote.numero}</td>
+                <td style={{width: "7%"}}>{lote.numero}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
@@ -53,7 +52,7 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
           ))}
           {loteCompradoCompras?.map((lote, index) =>(
             <tr key={index}>
-              <td>{lote.numero}</td>
+              <td style={{width: "7%"}}>{lote.numero}</td>
               <td>{calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{(calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador)}</td>
@@ -67,7 +66,7 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
         loteOrderId && loteOrderId.length > 0 ? (
           loteOrderId.map((lote, index) => (
             <tr key={index}>
-              <td>{lote.numero}</td>
+              <td style={{width: "7%"}}>{lote.numero}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
@@ -80,7 +79,7 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
           loteCompradoCompras && loteCompradoCompras.length > 0 ? (
             loteCompradoCompras.map((lote, index) =>(
               <tr key={index}>
-                <td>{lote.numero}</td>
+                <td style={{width: "7%"}}>{lote.numero}</td>
                 <td>{calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{(calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * loteCompradoCompras[index].variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador)}</td>
