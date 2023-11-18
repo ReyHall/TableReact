@@ -71,7 +71,7 @@ function TableReceberPagar({loteId, compras, loteCondicao}){
       <tfoot>
         <tr>
           <td>Valor a Pagar</td>
-          <td>{valorPagar.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
+          <td>{(valorPagar?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
         </tr>
 
         <tr>

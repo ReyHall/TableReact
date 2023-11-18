@@ -17,6 +17,7 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
 
   const { totalValorCompras, totalSinalCompras, totalComissaoCompras } = calcTotalCompras(listaVendasCompras, loteCompradoCompras, loteCondicaoCompras);
 
+
   return (
     <table className="table-compras-vendas">
       <thead>
@@ -45,17 +46,17 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{(calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome)}</td>
+                <td>{(calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{((calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
               </tr>
           ))}
           {loteCompradoCompras?.map((lote, index) =>(
             <tr key={index}>
               <td style={{width: "7%"}}>{lote.numero}</td>
-              <td>{calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{(calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador)}</td>
+              <td>{(calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{((calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
@@ -70,9 +71,9 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{(calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome)}</td>
+              <td>{(calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{((calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
             </tr>
           ))
         ) : (
@@ -80,9 +81,9 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
             loteCompradoCompras.map((lote, index) =>(
               <tr key={index}>
                 <td style={{width: "7%"}}>{lote.numero}</td>
-                <td>{calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{(calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * loteCompradoCompras[index].variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador)}</td>
+                <td>{(calcValueFormat(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{((calcValueParcelas(listaVendasCompras[index].valorLance, loteCondicaoCompras[index].parcelas) * loteCompradoCompras[index].variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(calcularEFormatarValor(listaVendasCompras[index].valorLance, lote.variations.length, loteCondicaoCompras[index].nome, listaVendasCompras[index].comissaoComprador) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
@@ -97,12 +98,12 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
         {loteOrderId && loteOrderId.length > 0 && loteCompradoCompras && loteCompradoCompras.length > 0 ? (
           <tr style={tableStyles.headerRow}>
             <td>Total</td>
-            <td>{totalValorCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-            <td>{totalSinalCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-            <td>{totalComissaoCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-            <td>{totalValorVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-            <td>{totalSinalVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-            <td>{totalComissaoVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
+            <td>{(totalValorCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+            <td>{(totalSinalCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+            <td>{(totalComissaoCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+            <td>{(totalValorVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+            <td>{(totalSinalVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+            <td>{(totalComissaoVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
           </tr>
         ) : (
           loteOrderId && loteOrderId.length > 0 ?(
@@ -111,17 +112,17 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{totalValorVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{totalSinalVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{totalComissaoVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
+              <td>{(totalValorVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(totalSinalVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(totalComissaoVendas?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
             </tr>
           ) : (
             loteCompradoCompras && loteCompradoCompras.length > 0 ?(
               <tr style={tableStyles.headerRow}>
                 <td>Total</td>
-                <td>{totalValorCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{totalSinalCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{totalComissaoCompras.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
+                <td>{(totalValorCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(totalSinalCompras?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(totalComissaoCompras.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
