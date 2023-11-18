@@ -3,13 +3,13 @@ import { abreviar, calcParcelas, calcTotals, totalGeralVendas } from "./MethodVe
 
 function TableMapaVendas({ mapaVendas }) {
   var bottom = 0;
-  var pagNum = 2; 
+  var pagNum = 2;
   const linkStyle = document.createElement("link");
 
   const colspanNum = document.querySelectorAll(".table-mapa-vendas tbody td").length;
 
   React.useEffect(() => {
-    document.querySelectorAll("tbody tr:nth-child(17n)").forEach(function(paragraph) {
+    document.querySelectorAll("tbody tr:nth-child(17n)").forEach(function (paragraph) {
       bottom -= 100;
       var botString = bottom.toString();
       var counter = document.querySelector('h3.pag1').cloneNode(true);
@@ -24,7 +24,7 @@ function TableMapaVendas({ mapaVendas }) {
 
     var pagTotal = document.querySelectorAll('.pag').length; /* Gets the total amount of pages by total classes of paragraphs */
     var pagTotalString = pagTotal.toString();
-    document.querySelectorAll("h3[class^=pag]").forEach(function(element) {
+    document.querySelectorAll("h3[class^=pag]").forEach(function (element) {
       /* Gets the numbers of each classes and pages */
       var numId = element.className.match(/\d+/)[0];
       document.styleSheets[0].addRule('h3.pag' + numId + '::before', 'content: " ' + numId + ' de ' + pagTotalString + '";');
@@ -39,6 +39,7 @@ function TableMapaVendas({ mapaVendas }) {
   const totalComissaoVendas = calcTotals(mapaVendas, "comissaoVend");
   const totalComissaoComprador = calcTotals(mapaVendas, "comissaoComprador");
   const totalGeralComissao = totalComissaoComprador + totalComissaoVendas;
+  const totalGeralVendas1 = totalGeralVendas(mapaVendas);
 
   return (
     <React.Fragment>
@@ -86,7 +87,7 @@ function TableMapaVendas({ mapaVendas }) {
           <tr style={tableStyles.headerRow}>
             <td colSpan={colspanNum}>
               <div className="flex">
-                <p>Total Geral de Vendas = {totalGeralVendas.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>
+                <p>Total Geral de Vendas = {totalGeralVendas1.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>
                 <p>Total Comissão Vendedor = {totalComissaoVendas.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>
                 <p>Total Comissão Comprador = {totalComissaoComprador.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>
                 <p>Total Geral Comissão = {totalGeralComissao.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>

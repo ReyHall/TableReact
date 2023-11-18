@@ -1,12 +1,13 @@
-import mapaVendas from "./mapaVendas.json";
+// import mapaVendas from "./mapaVendas.json";
 
-export const calcParcelas = (valorTotal, porcentagem) =>{
+export const calcParcelas = (valorTotal, porcentagem) => {
   const parcelas = (valorTotal * porcentagem) / 100;
-  return parcelas.toLocaleString("pt-br", {style: "currency", currency: "BRL"});
+  return parcelas.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
 
 export const calcTotals = (mapaVendas, comissao) => {
   let total = 0;
+  
 
   for (const incremento of mapaVendas) {
     const valorTotal = Number(incremento.valorTotal);
@@ -20,23 +21,41 @@ export const calcTotals = (mapaVendas, comissao) => {
   return total;
 };
 
-export const totalGeralVendas = mapaVendas.reduce((acc, incremento) =>{
-  return Number(acc + incremento.valorTotal);
-}, 0)
+
+
+export const totalGeralVendas = (mapaVendas) => {
+
+  let total = 0;
+
+  for (const incremento of mapaVendas) {
+    const valorTotal = Number(incremento.valorTotal);
+    total +=  valorTotal
+  }
+
+  return total
+
+}
+
+
+
+
+
+
+
 
 export const abreviar = (nomeCompleto) => {
   const palavras = nomeCompleto.split(" ");
 
   if (palavras.length === 1) {
-    return nomeCompleto; 
+    return nomeCompleto;
   }
 
-  const excecoes = ["dos","das","do","da","de","se","sa","e","a","i","o","u"];
+  const excecoes = ["dos", "das", "do", "da", "de", "se", "sa", "e", "a", "i", "o", "u"];
   const abreviado = palavras.map((palavra, index) => {
     if (index === 0 || excecoes.includes(palavra.toLowerCase()) || index === palavras.length - 1) {
       return palavra;
     }
-      return palavra.charAt(0) + ".";
+    return palavra.charAt(0) + ".";
   });
 
   return abreviado.join(" ");
