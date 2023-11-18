@@ -59,7 +59,9 @@
 
 .negociacoes .receipt{
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
   justify-content: space-between;
   padding: 1.5rem 10rem 1.5rem 2rem;
 }
@@ -69,7 +71,6 @@
   font-weight: normal;
   text-transform: none !important;
   color: var(--black);
-  max-width: 36rem;
 }
 
 .negociacoes .receipt .emphasis span{
