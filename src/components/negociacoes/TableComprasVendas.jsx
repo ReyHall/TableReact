@@ -42,13 +42,13 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
         <>
           {loteOrderId?.map((lote, index) => (
               <tr key={index}>
-                <td style={{width: "7%"}}>{lote.numero}</td>
+                <td style={{width: "7%"}}>{lote?.numero}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
                 <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-                <td>{(calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
-                <td>{((calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
-                <td>{(calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(calcValueFormat(lote?.Vendas?.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{((calcValueParcelas(lote?.Vendas?.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+                <td>{(calcularEFormatarValor(lote?.Vendas?.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
               </tr>
           ))}
           {loteCompradoCompras?.map((lote, index) =>(
@@ -71,9 +71,9 @@ function TableComprasVendas({loteId, compras, loteCondicao}){
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
               <td>{Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</td>
-              <td>{(calcValueFormat(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
-              <td>{((calcValueParcelas(lote.Vendas.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
-              <td>{(calcularEFormatarValor(lote.Vendas.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(calcValueFormat(lote?.Vendas?.valorLance, lote.variations.length, loteCondicaoVendas[index].nome).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{((calcValueParcelas(lote?.Vendas?.valorLance, loteCondicaoVendas[index].parcelas) * lote.variations.length).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
+              <td>{(calcularEFormatarValor(lote?.Vendas?.valorLance, lote.variations.length, loteCondicaoVendas[index].nome, lote.comissaoVendedor.nome) || Number(0).toLocaleString('pt-br', {style: "currency", currency: "BRL"}))}</td>
             </tr>
           ))
         ) : (

@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function RelatoriosList(){
-  return(
+function RelatoriosList() {
+  return (
     <main className="relatorios">
       <section className="container">
         <h3 className="subtitle">Emitir Relatorios</h3>
         <Link className="btn" to={'mapavendas'}>Mapa de Vendas</Link>
         <Link className="btn" to={'negociacoes'}>Acertos</Link>
+        <Link className="btn" to={'faturacomprador'}>Fatura Comprador</Link>
       </section>
     </main>
   )

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MapaVendas from "../mapa_vendas/MapaVendas";
 import RelatoriosList from "./RelatoriosList";
 import Negociacoes from "../negociacoes/Negociacoes";
+import FaturaComprador from "../faturacomprador/FaturaComprador";
 
 function Relatorios(){
   return(
@@ -11,6 +12,7 @@ function Relatorios(){
         <Route path="/" element={<RelatoriosList />}/>
         <Route path="mapavendas" element={<MapaVendas />}/>
         <Route path="negociacoes" element={<Negociacoes />} />
+        <Route path="faturacomprador" element={<FaturaComprador />} />
       </Routes>
     </div>
   )

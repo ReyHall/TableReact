@@ -25,7 +25,7 @@ function TableReceberPagar({loteId, compras, loteCondicao}){
           <td>Soma das Parcelas Iniciais</td>
           <td>
             {totalSinalVendas 
-              ? Number(totalSinalVendas).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(+)"
+              ? Number(totalSinalVendas)?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(+)"
               : Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(+)"
             }
           </td>
@@ -33,7 +33,7 @@ function TableReceberPagar({loteId, compras, loteCondicao}){
       </thead>
 
       <tbody>
-        <tr style={tableStyles.headerCell}>
+        <tr style={tableStyles?.headerCell}>
           <th colSpan={2}>A Pagar</th>
         </tr>
 
@@ -51,7 +51,7 @@ function TableReceberPagar({loteId, compras, loteCondicao}){
           <td>Comissão de Comprador</td>
           <td>
             {totalComissaoCompras
-              ? Number(totalComissaoCompras).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
+              ? Number(totalComissaoCompras)?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
               : Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
             }
           </td>
@@ -61,7 +61,7 @@ function TableReceberPagar({loteId, compras, loteCondicao}){
           <td>Comissao de Vendedor</td>
           <td>
             {totalComissaoVendas
-              ? Number(totalComissaoVendas).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
+              ? Number(totalComissaoVendas)?.toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
               : Number(0).toLocaleString("pt-br", {style: "currency", currency: "BRL"}) + "(-)"
             }</td>
         </tr>
