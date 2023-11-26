@@ -16,6 +16,8 @@ function RoutesElement() {
       linkPrint.setAttribute("href", "/src/components/mapa_vendas/MapaPrint.css");
     } else if (location.pathname === "/relatorios/negociacoes") {
       linkPrint.setAttribute("href", "/src/components/negociacoes/NegociacoesPrint.css");
+    } else if (location.pathname === "/relatorios/faturacomprador") {
+      linkPrint.setAttribute("href", "/src/components/faturacomprador/FaturaCompradorPrint.css");
     }
 
     document.head.appendChild(linkPrint);
@@ -27,9 +29,9 @@ function RoutesElement() {
 
   return (
     <Routes location={location} key={location.pathname}>
-      <Route path='/' element={<Login/>}/>
-      <Route path='/relatorios/*' element={<React.Fragment> <Header/> <Relatorios/> </React.Fragment>} />
-      <Route path='*' element={<Error404/>} />
+      <Route path='/' element={<Login />} />
+      <Route path='/relatorios/*' element={<React.Fragment> <Header /> <Relatorios /> </React.Fragment>} />
+      <Route path='*' element={<Error404 />} />
     </Routes>
   );
 }

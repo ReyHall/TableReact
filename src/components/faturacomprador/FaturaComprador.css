@@ -9,15 +9,16 @@
 
 
 .fatura-comprador .flex-status{
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .fatura-comprador .flex-status .status{
   font-size: 1.7rem;
+  flex: 1 1 40rem;
 }
 
 .fatura-comprador .flex-status .status h2{
@@ -29,9 +30,17 @@
   line-height: 1.3;
 }
 
+.fatura-comprador .flex-status .status:nth-child(1){
+  margin-bottom: 6rem;
+}
+
 .fatura-comprador .lote{
   padding: 1rem;
   font-size: 1.8rem;
+}
+
+.fatura-comprador .lote th{
+  height: 1px !important;
 }
 
 .fatura-comprador .table-lote-lance{
@@ -39,14 +48,18 @@
 }
 
 .fatura-comprador .table-fatura-comprador{
-  margin: 2.5rem 0;
+  margin-bottom: 2.5rem;
+}
+
+.fatura-comprador .lote{
+  margin-bottom: 0 !important;
 }
 
 .fatura-comprador .table-fatura-comprador td, .fatura-comprador .table-fatura-comprador th,
 .fatura-comprador .table-fatura-comprador td .fatura-comprador .table-fatura-comprador th{
   border: var(--border);
   border-collapse: collapse;
-  padding: 0.7rem 0.4rem;
+  padding: 0.7rem 0.5rem;
   font-size: 1.6rem;
   text-align: center;
   font-weight: normal;

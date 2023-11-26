@@ -3,7 +3,7 @@ import logo from "../../assets/Logo-Atual-leiloes-163px.png";
 import compradoresFaturaCompradores from "./compradoresFaturaCompradores.json";
 import { calcValueFormat, calcParcela } from "./MethodFaturaComprador";
 import { addMonths, format } from 'date-fns';
-import "./FaturaVendedor.css";
+import "./FaturaComprador.css";
 
 let listaComprador = {}
 for (let i = 0; i < compradoresFaturaCompradores.length; i++) {
@@ -149,13 +149,25 @@ function FaturaVendedor() {
   });
 
   let parcelas = []
+  let parcelasPar = []
   let valorLance = []
   let count = 0;
 
   for (let index = 0; index < pares.length; index++) {
     for (let kindex = 0; kindex < pares[index].length; kindex++) {
-      parcelas = [...pares[index][kindex].condicao.parcelas]
+      parcelas = [...pares[index][kindex].condicao.parcelas].filter((newParcela, index) => newParcela.parcela === "1");
     }
+  }
+
+  for (let index = 0; index < pares.length; index++) {
+    for (let kindex = 0; kindex < pares[index].length; kindex++) {
+      parcelasPar = [...pares[index][kindex].condicao.parcelas].filter((newParcela, index) => newParcela.parcela === "2");
+    }
+  }
+
+  const quantidadeInsercoes = Math.min(parcelasPar.length, parcelas.length);
+  for (let i = 0; i < quantidadeInsercoes; i++) {
+    parcelas.splice(i * parcelasPar.length, 0, { "parcela": "2" });
   }
 
   for (let index = 0; index < impares.length; index++) {
@@ -168,7 +180,6 @@ function FaturaVendedor() {
     headerRow: { background: "var(--gray-alternate)", color: "var(--white)" },
     headerCell: { background: "var(--gray-dark)", color: "var(--white)" }
   }
-
 
   return (
     <main className="fatura-comprador">
@@ -221,7 +232,7 @@ function FaturaVendedor() {
 
             {pares[index].map((parer, indexPares) => (
               <React.Fragment key={indexPares}>
-                <table className="table-fatura-comprador">
+                <table className="table-fatura-comprador lote">
                   <thead>
                     <tr style={tableStyles.headerCell}>
                       <th>{parer?.numero} <p>Lote</p></th>
@@ -235,22 +246,22 @@ function FaturaVendedor() {
 
                 <p style={{ display: "none" }}>{count += 1}</p>
 
-                <table className="table-fatura-comprador" id="dates-lance">
+                <table className="table-fatura-comprador">
                   <tbody>
                     {parcelas.map((parcela, index) => {
                       const startDate = new Date('10/18/2023');
-                      const date1 = addMonths(startDate, index / (parcelas.length / 9) + 1);
-                      const date2 = addMonths(startDate, index / (parcelas.length / 9) + 10);
-                      const date3 = addMonths(startDate, index / (parcelas.length / 9) + 19);
-                      const date4 = addMonths(startDate, index / (parcelas.length / 9) + 28);
+                      const date1 = addMonths(startDate, (index / 4) + 1);
+                      const date2 = addMonths(startDate, (index / 4) + 10);
+                      const date3 = addMonths(startDate, (index / 4) + 19);
+                      const date4 = addMonths(startDate, (index / 4) + 28);
 
                       return (
-                        index % (parcelas.length / 9) === 0 && (
+                        index % 4 === 0 && (
                           <tr key={index / 9}>
-                            <td>{index / (parcelas.length / 9) + 1} - {format(date1, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcela.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
-                            <td>{index / (parcelas.length / 9) + 10} - {format(date2, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcela.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
-                            <td>{index / (parcelas.length / 9) + 19} - {format(date3, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcela.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
-                            <td>{index / (parcelas.length / 9) + 28} - {format(date4, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcela.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
+                            <td>{(index / 4) + 1} - {format(date1, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index].parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
+                            <td>{(index / 4) + 10} - {format(date2, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index + 1].parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
+                            <td>{(index / 4) + 19} - {format(date3, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index + 1].parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
+                            <td>{(index / 4) + 28} - {format(date4, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index + 1].parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
                           </tr>
                         )
                       );
