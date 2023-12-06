@@ -37,7 +37,7 @@ function TableFaturaComprador({ pares, parcelas, valorLance, count, indexSec }) 
                 const date4 = addMonths(startDate, index + Math.floor(parcelas?.length / 1.25));
 
                 return (
-                  index <= Math.ceil(parcelas.length / 4) && (
+                  index < Math.ceil(parcelas.length / 4) && (
                     <tr key={index / 9}>
                       <td>{index + (parcelas.length / parcelas.length)} - {format(date1, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index]?.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
                       <td>{index + (parcelas.length / 4) + 1} - {format(date2, 'dd/MM/yyyy')}/ - {(calcParcela(valorLance[count - 1], parcelas[index + (parcelas.length / 4)]?.parcela || 0)).toLocaleString('pt-br', { style: "currency", currency: "BRL" })}</td>
