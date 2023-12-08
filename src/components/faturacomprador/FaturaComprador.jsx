@@ -24,8 +24,6 @@ for (let i = 0; i < compradoresFaturaCompradores.length; i++) {
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id].push(compradoresFaturaCompradores[i].loteComprado[j])
 
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id].push(compradoresFaturaCompradores[i].listaVendas[j])
-
-
       }
     }
   }
