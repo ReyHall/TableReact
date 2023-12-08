@@ -9,11 +9,12 @@
 
 
 .fatura-comprador .flex-status{
-  margin-top: 2.5rem;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
 }
 
 .fatura-comprador .flex-status .status{
@@ -30,9 +31,6 @@
   line-height: 1.3;
 }
 
-.fatura-comprador .flex-status .status:nth-child(1){
-  margin-bottom: 6rem;
-}
 
 .fatura-comprador .lote{
   padding: 1rem;

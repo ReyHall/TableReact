@@ -19,10 +19,8 @@ for (let i = 0; i < compradoresFaturaCompradores.length; i++) {
       if (!listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id]) {
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id] = [compradoresFaturaCompradores[i].loteComprado[j]]
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id].push(compradoresFaturaCompradores[i].listaVendas[j])
-
       } else {
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id].push(compradoresFaturaCompradores[i].loteComprado[j])
-
         listaComprador[comp][compradoresFaturaCompradores[i].loteComprado[j].vendedores[k].vendedor.id].push(compradoresFaturaCompradores[i].listaVendas[j])
       }
     }
@@ -31,6 +29,7 @@ for (let i = 0; i < compradoresFaturaCompradores.length; i++) {
 
 function FaturaComprador() {
   const section = Object.entries(listaComprador);
+
   const dados = Object.entries(listaComprador).map((dates) => {
     return Object.entries(dates[1])[0][1];
   });
@@ -79,7 +78,7 @@ function FaturaComprador() {
                     return <VendedorStatus key={vendedorId} vendedores={vendedores} />;
                   }
                 } else {
-                  const compradorId = compradores[0].comprador.id
+                  const compradorId = compradores[0].comprador.id;
                   if (!idsCompradoresProcessados.has(compradorId)) {
                     idsCompradoresProcessados.add(compradorId);
                     return <CompradorStatus key={compradorId} compradores={compradores} />;
@@ -89,7 +88,7 @@ function FaturaComprador() {
             </div>
 
             {pares[indexSec].map((parer, index) => (
-              <TableFaturaComprador key={index} parer={parer} valorLance={valorLance} parcelas={parcelas} count={count < valorLance?.length && count++} />
+              <TableFaturaComprador key={index} parer={parer} valorLance={valorLance} parcelas={parcelas} count={count < valorLance.length && count++} />
             ))}
           </section>
         );
